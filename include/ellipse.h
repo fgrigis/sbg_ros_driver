@@ -6,6 +6,7 @@
 #include <sbgEComLib.h>
 #include <sbgEComIds.h>
 #include <sbgErrorCodes.h>
+#include "sensor_msgs/Imu.h"
 
 #include <iostream>
 #include <map>
@@ -54,6 +55,7 @@ class Ellipse
     sbg_driver::SbgStatus m_sbgStatus_msg;
     sbg_driver::SbgUtcTime m_sbgUtcTime_msg;
     sbg_driver::SbgImuData m_sbgImuData_msg;
+    sensor_msgs::Imu m_standardImuDataFormat_msg;
     sbg_driver::SbgEkfEuler m_sbgEkfEuler_msg;
     sbg_driver::SbgEkfQuat m_sbgEkfQuat_msg;
     sbg_driver::SbgEkfNav m_sbgEkfNav_msg;
@@ -98,6 +100,7 @@ class Ellipse
     ros::Publisher m_sbgStatus_pub;
     ros::Publisher m_sbgUtcTime_pub;
     ros::Publisher m_sbgImuData_pub;
+    ros::Publisher m_standardImuDataFormat_pub;
     ros::Publisher m_sbgEkfEuler_pub;
     ros::Publisher m_sbgEkfQuat_pub;
     ros::Publisher m_sbgEkfNav_pub;

@@ -1,5 +1,6 @@
 #include "ellipse.h"
 #include "ellipse_msg.h"
+#include "sensor_msgs/Imu.h"
 
 #include <iostream>
 #include <iomanip>
@@ -63,6 +64,7 @@ void Ellipse::init_publishers(){
     m_sbgUtcTime_pub = m_node->advertise<sbg_driver::SbgUtcTime>("utc_time",10);
   if(m_log_imu_data !=0)
     m_sbgImuData_pub = m_node->advertise<sbg_driver::SbgImuData>("imu_data",10);
+    m_standardImuDataFormat_pub = m_node->advertise<sensor_msgs::Imu>("std_imu_data",10);
   if(m_log_ekf_euler !=0)
     m_sbgEkfEuler_pub = m_node->advertise<sbg_driver::SbgEkfEuler>("ekf_euler",10);
   if(m_log_ekf_quat !=0)
@@ -251,8 +253,21 @@ void Ellipse::publish(){
     m_sbgUtcTime_pub.publish(m_sbgUtcTime_msg);
   }
 
+  //Adding publisher that wraps sbg proprietary IMU message into ROS standard sensor_msgs/Imu message
   if(m_new_sbgImuData && m_log_imu_data != 0){
     m_new_sbgImuData = false;
+    m_standardImuDataFormat_msg.header.stamp = m_sbgImuData_msg.header.stamp;
+    m_standardImuDataFormat_msg.header.frame_id = "sbg_imu";
+
+    for (int i=0; i < 9; i++){
+         m_standardImuDataFormat_msg.orientation_covariance[i]= -1;
+         m_standardImuDataFormat_msg.angular_velocity_covariance[i] = 0;
+         m_standardImuDataFormat_msg.linear_acceleration_covariance[i] = 0;
+    }
+
+    m_standardImuDataFormat_msg.angular_velocity = m_sbgImuData_msg.gyro;
+    m_standardImuDataFormat_msg.linear_acceleration = m_sbgImuData_msg.accel;
+    m_standardImuDataFormat_pub.publish(m_standardImuDataFormat_msg);
     m_sbgImuData_pub.publish(m_sbgImuData_msg);
   }
 
