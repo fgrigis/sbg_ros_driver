@@ -64,7 +64,7 @@ void Ellipse::init_publishers(){
     m_sbgUtcTime_pub = m_node->advertise<sbg_driver::SbgUtcTime>("utc_time",10);
   if(m_log_imu_data !=0)
     m_sbgImuData_pub = m_node->advertise<sbg_driver::SbgImuData>("imu_data",10);
-    m_standardImuDataFormat_pub = m_node->advertise<sensor_msgs::Imu>("std_imu_data",10);
+    m_standardImuDataFormat_pub = m_node->advertise<sensor_msgs::Imu>("imu",10);
   if(m_log_ekf_euler !=0)
     m_sbgEkfEuler_pub = m_node->advertise<sbg_driver::SbgEkfEuler>("ekf_euler",10);
   if(m_log_ekf_quat !=0)
@@ -257,7 +257,7 @@ void Ellipse::publish(){
   if(m_new_sbgImuData && m_log_imu_data != 0){
     m_new_sbgImuData = false;
     m_standardImuDataFormat_msg.header.stamp = m_sbgImuData_msg.header.stamp;
-    m_standardImuDataFormat_msg.header.frame_id = "sbg_imu";
+    m_standardImuDataFormat_msg.header.frame_id = "imu_sbg";
 
     for (int i=0; i < 9; i++){
          m_standardImuDataFormat_msg.orientation_covariance[i]= -1;
