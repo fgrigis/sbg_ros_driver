@@ -1,7 +1,7 @@
 # SBG Ellipse Messages
 Header header
 
-# Time since sensor is powered up μs 
+# Time since sensor is powered up micro s 
 uint32 time_stamp
 
 # IMU Status
@@ -13,7 +13,7 @@ geometry_msgs/Vector3 accel
 # Filtered Gyroscope – X, Y, Z axis rad/s 
 geometry_msgs/Vector3 gyro
 
-# Internal Temperature °C 
+# Internal Temperature  degreeC 
 float32 temp
 
 # Sculling output – X, Y, Z axis m/s2 

@@ -1,7 +1,7 @@
 # SBG Ellipse Messages
 Header header
 
-#  Time since sensor is powered up μs 
+#  Time since sensor is powered up micro s 
 uint32 time_stamp
 
 # GPS velocity fix and status bitmask - 
@@ -13,11 +13,11 @@ uint32 gps_tow
 # Velocity in [North, East, Down] direction m/s 
 geometry_msgs/Vector3 vel
 
-# 1 σ Accuracy in [North, East, Down] direction m/s 
+# 1 sigma Accuracy in [North, East, Down] direction m/s 
 geometry_msgs/Vector3 vel_acc
 
-# True direction of motion over ground (0 to 360°) ° 
+# True direction of motion over ground (0 to 360 degree)  degree 
 float32 course
 
-# 1 σ course accuracy (0 to 360°). ° 
+# 1 sigma course accuracy (0 to 360 degree).  degree 
 float32 course_acc

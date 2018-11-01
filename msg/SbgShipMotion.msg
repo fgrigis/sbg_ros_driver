@@ -1,14 +1,14 @@
 # SBG Ellipse Messages
 Header header
 
-# Time since sensor is powered up μs 
+# Time since sensor is powered up micro s 
 uint32 time_stamp
 
 # Main heave period in seconds. s float 4 4
 uint16 heave_period
 
 # [Surge, Sway, Heave (positive down)] at main location (in m)
-# Note : Surge & Sway are not fulfilled
+# Note : Surge and Sway are not fulfilled
 geometry_msgs/Vector3 ship_motion
 
 # [Longitudinal, Lateral, Vertical (positive down)] acceleration (in m/s2)

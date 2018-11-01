@@ -2,7 +2,7 @@
 
 Header header
 
-# Time since sensor is powered up (in µs)
+# Time since sensor is powered up (in micro s)
 uint32 time_stamp
 
 # General status bitmask and enums
